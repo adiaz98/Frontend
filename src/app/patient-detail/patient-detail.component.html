@@ -1,0 +1,24 @@
+<div *ngIf="patient">
+
+  <h2>Patient {{patient.id}} Details</h2>
+  <div><span>id: </span>{{patient.id}}</div>
+  <div>
+    <label for="patient-firstname">Firstname: </label>
+    <input id="patient-firstname" [(ngModel)]="patient.firstname">
+  </div>
+  <div>
+    <label for="patient-lastname">Lastname: </label>
+    <input id="patient-lastname" [(ngModel)]="patient.lastname">
+  </div>
+  <div>
+    <label for="patient-email">Email: </label>
+    <input id="patient-email" [(ngModel)]="patient.email">
+  </div>
+  <div>
+    <label for="patient-telephone">Telephone: </label>
+    <input id="patient-telephone" [(ngModel)]="patient.telephone">
+  </div>
+</div>
+
+<button (click)="goBack()">Back</button>
+<button (click)="save()">Update</button>

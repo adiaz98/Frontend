@@ -1,0 +1,30 @@
+<div>
+  <label>Firstname:
+    <input #patientFirstName />
+  </label>
+  <br>
+  <label>Lastname:
+    <input #patientLastName />
+  </label>
+  <br>
+  <label>Email:
+    <input #patientEmail />
+  </label>
+  <br>
+  <label>Telephone:
+    <input #patientTelephone />
+  </label>
+  <br>
+  <button (click)="add(patientFirstName.value, patientLastName.value, patientEmail.value, patientTelephone.value);
+                  patientFirstName.value=''; patientLastName.value=''; patientEmail.value=''; patientTelephone.value=''">
+    Add Patient
+  </button>
+</div>
+
+<ul>
+  <li *ngFor="let patient of patientList">
+    <span class="badge">{{patient.id}}</span> {{ patient.firstname }} {{ patient.lastname }} {{ patient.email }} {{ patient.telephone }}
+    <button title="delete" (click)="delete(patient)">Delete</button>
+    <a routerLink="/detail/{{patient.id}}">Edit</a>
+  </li>
+</ul>
