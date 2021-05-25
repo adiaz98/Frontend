@@ -22,10 +22,28 @@
           <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
         </div>
       </div>
-      Patient: <input type="radio" id="role" name="role" value='patient' (click)="setRegistrationType($event)">
+      Patient: <input type="radio" id="role" name="role" value='patient' (click)="setRegistrationType($event)" checked>
       Doctor: <input type="radio" id="role" name="role" value = 'doctor' (click)="setRegistrationType($event)">
       <div *ngIf="isPatient">
-        <app-patient-list></app-patient-list>
+        <!-- <app-patient-list></app-patient-list> -->
+        <div>
+          <label>Firstname:
+            <input #patientFirstName="ngModel" name="firstname" [(ngModel)]="form.firstname"/>
+          </label>
+          <br>
+          <label>Lastname:
+            <input #patientLastName="ngModel" name="lastname" [(ngModel)]="form.lastname"/>
+          </label>
+          <br>
+          <label>Email:
+            <input #patientEmail="ngModel" name="email" type="email" [(ngModel)]="form.email"/>
+          </label>
+          <br>
+          <label>Telephone:
+            <input #patientTelephone="ngModel" name="telephone" type="tel" [(ngModel)]="form.telephone"/>
+          </label>
+          <br>
+        </div>
       </div>
       <div class="form-group">
         <button class="btn btn-primary">Register</button>
