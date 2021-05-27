@@ -1,5 +1,10 @@
 <div *ngIf="isLoggedIn; else loggedOut">
-  Logged in as {{roles}}.
+  <div *ngIf="roles.includes('ROLE_ADMIN')">
+    Logged in as a Doctor
+  </div>
+  <div *ngIf="roles.includes('ROLE_USER')">
+    Logged in as a Patient
+  </div>
 </div>
 
 <ng-template #loggedOut>

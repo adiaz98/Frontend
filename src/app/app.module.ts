@@ -12,6 +12,7 @@ import { AdminComponent } from './admin/admin.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { PatientDetailComponent } from './patient-detail/patient-detail.component';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'auth/login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
   { path: 'detail/:id', component: PatientDetailComponent },
+  { path: 'appointments/:id', component: AppointmentListComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
@@ -33,7 +35,8 @@ const routes: Routes = [
     UserComponent,
     AdminComponent,
     PatientListComponent,
-    PatientDetailComponent
+    PatientDetailComponent,
+    AppointmentListComponent
   ],
   imports: [
     BrowserModule,

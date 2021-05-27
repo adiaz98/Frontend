@@ -6,6 +6,7 @@ import {AdminComponent} from './admin/admin.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {PatientDetailComponent} from './patient-detail/patient-detail.component';
+import {AppointmentListComponent} from './appointment-list/appointment-list.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,9 @@ const routes: Routes = [
   },
   { path: 'detail/:id',
     component: PatientDetailComponent
+  },
+  { path: 'appointments/:id',
+    component: AppointmentListComponent
   },
   {
     path: '',

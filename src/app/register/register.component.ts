@@ -15,8 +15,8 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
 
   constructor(private authService: AuthService) { }
-  finalRole = ['user'];
-  isPatient = true;
+  finalRole = ['admin'];
+  isPatient = false;
 
   setRegistrationType(event: Event) {
     // tslint:disable-next-line:triple-equals
@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form);
+    // tslint:disable-next-line:max-line-length
     this.signupInfo = new SignupInfo(this.form.username, this.finalRole, this.form.password, this.form.firstname, this.form.lastname, this.form.email, this.form.telephone);
 
     this.authService.signUp(this.signupInfo).subscribe(

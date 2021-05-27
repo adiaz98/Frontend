@@ -1,0 +1,36 @@
+<div *ngIf="patient">
+  <h2>Patient {{patient.id}} Appointments</h2>
+  <div>
+    <label>Date:
+      <input #appointmentDate />
+    </label>
+    <br>
+    <label>Department:
+      <input #appointmentDepartment />
+    </label>
+    <br>
+    <label>Room:
+      <input #appointmentRoom />
+    </label>
+    <br>
+    <label>Reason:
+      <input #appointmentReason />
+    </label>
+    <br>
+    <label>Recipe:
+      <input #appointmentRecipe />
+    </label>
+    <br>
+    <button (click)="add(appointmentDate.value, appointmentDepartment.value, appointmentRoom.value, appointmentReason.value, appointmentRecipe.value);
+                  appointmentDate.value=''; appointmentDepartment.value=''; appointmentRoom.value=''; appointmentReason.value=''; appointmentRecipe.value=''">
+      Add Appointment
+    </button>
+  </div>
+
+  <ul>
+    <li *ngFor="let appointment of appointmentList">
+      <span class="badge">{{appointment.id}}</span> {{ appointment.date }} {{ appointment.department }} {{ appointment.room }} {{ appointment.reason }} {{ appointment.recipe }}
+      <button title="delete" (click)="delete(appointment)">Delete Appointment</button>
+    </li>
+  </ul>
+</div>
