@@ -23,18 +23,18 @@ export class AppointmentListComponent implements OnInit {
               private appointmentService: AppointmentService) { }
 
   ngOnInit() {
-    this.getPatient();
-    this.getAppointments();
+    const patient_id = Number(this.route.snapshot.paramMap.get('id'));
+    this.getPatient(patient_id);
+    this.getAppointments(patient_id);
   }
 
-  getPatient(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.patientService.getPatient(id)
+  getPatient(patient_id): void {
+    this.patientService.getPatient(patient_id)
       .subscribe(patient => this.patient = patient);
   }
 
-  getAppointments(): void {
-    this.appointmentService.getAppointmentByUser(this.patient.id)
+  getAppointments(patient_id): void {
+    this.appointmentService.getAppointmentByUser(patient_id)
       .subscribe(appointmentList => this.appointmentList = appointmentList);
   }
 
