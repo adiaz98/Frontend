@@ -9,7 +9,8 @@ import {TokenStorageService} from './auth/token-storage.service';
 export class AppComponent implements OnInit {
   title = 'iwa-http-contacts';
   private roles: string[];
-  private authority: string;
+  authority: string;
+  username: string;
 
   constructor(private tokenStorage: TokenStorageService) { }
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
           return false;
         }
         this.authority = 'user';
+        this.username = this.tokenStorage.getUsername();
         return true;
       });
     }

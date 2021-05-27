@@ -1,6 +1,6 @@
 <div *ngIf="patient">
   <h2>Patient {{patient.id}} Appointments</h2>
-  <div>
+  <div *ngIf="!is_patient_page">
     <label>Date:
       <input #appointmentDate />
     </label>

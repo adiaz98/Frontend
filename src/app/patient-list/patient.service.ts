@@ -39,6 +39,14 @@ export class PatientService {
     );
   }
 
+  getPatientByName(username: string): Observable<Patient> {
+    const url = `${this.patientsUrl}/username:${username}`;
+    return this.http.get<Patient>(url).pipe(
+      tap(_ => this.log(`fetched patient username=${username}`)),
+      catchError(this.handleError<Patient>(`getPatientByUsername username=${username}`))
+    );
+  }
+
   /** DELETE: delete the patient from the server */
   deletePatient(patient: Patient | number): Observable<Patient> {
     const id = typeof patient === 'number' ? patient : patient.id;

@@ -13,7 +13,7 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav" routerLinkActive="active">
       <li *ngIf="authority === 'user'" class="nav-item">
-        <a class="nav-link" routerLink="user">User Page</a>
+        <app-appointment-list [username]=username></app-appointment-list>
       </li>
       <li *ngIf="authority === 'admin'" class="nav-item">
         <a class="nav-link" routerLink="patients">Patients</a>

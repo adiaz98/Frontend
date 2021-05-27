@@ -16,6 +16,8 @@ import {Location} from '@angular/common';
 export class AppointmentListComponent implements OnInit {
   appointmentList: Appointment[];
   @Input() patient?: Patient;
+  @Input() username?: string;
+  is_patient_page: boolean;
 
   constructor(private route: ActivatedRoute,
               private patientService: PatientService,
@@ -24,8 +26,22 @@ export class AppointmentListComponent implements OnInit {
 
   ngOnInit() {
     const patient_id = Number(this.route.snapshot.paramMap.get('id'));
-    this.getPatient(patient_id);
-    this.getAppointments(patient_id);
+    if(patient_id) {
+      this.is_patient_page = false;
+      this.getPatient(patient_id);
+      this.getAppointments(patient_id);
+    }
+    else{
+      this.is_patient_page = true;
+      this.getPatientByName(this.username)
+    }
+  }
+  getPatientByName(username: string) {
+    this.patientService.getPatientByName(username)
+      .subscribe(patient => {
+        this.patient = patient;
+        this.getAppointments(patient.id);
+      });
   }
 
   getPatient(patient_id): void {
