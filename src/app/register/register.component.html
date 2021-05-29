@@ -35,7 +35,7 @@
             <input #patientLastName="ngModel" name="lastname" [(ngModel)]="form.lastname"/>
           </label>
           <mat-form-field appearance="fill">
-            <mat-label>Favorite food</mat-label>
+            <mat-label>Gender</mat-label>
             <mat-select [(ngModel)]="form.gender" name="food">
               <mat-option *ngFor="let gender of genders" [value]="gender">
                 {{gender}}

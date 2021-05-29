@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from './patient.model';
 import { PatientService } from './patient.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-patient-list',
@@ -9,11 +10,14 @@ import { PatientService } from './patient.service';
   providers: [PatientService]
 })
 export class PatientListComponent implements OnInit {
+  public displayedColumns = ['id', 'firstname', 'lastname', 'email', 'telephone', 'gender', 'appointments', 'edit', 'delete'];
   patientList: Patient[];
+  public dataSource = new MatTableDataSource<Patient>();
 
   constructor(private patientService: PatientService) { }
 
   ngOnInit() {
+    this.dataSource.data = this.patientList;
     this.getPatients();
   }
 

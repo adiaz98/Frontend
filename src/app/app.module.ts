@@ -15,6 +15,9 @@ import { PatientDetailComponent } from './patient-detail/patient-detail.componen
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -47,7 +50,10 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

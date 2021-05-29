@@ -9,3 +9,65 @@
     <a routerLink="/appointments/{{patient.id}}">View Appointments</a>
   </li>
 </ul>
+
+<table mat-table [dataSource]="patientList">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef class='position-center'> Id </th>
+    <td mat-cell *matCellDef="let patient"> {{patient.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstname">
+    <th mat-header-cell *matHeaderCellDef class='position-center'> Name </th>
+    <td mat-cell *matCellDef="let patient"> {{patient.firstname}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+    <th mat-header-cell *matHeaderCellDef class='position-center'> LastName </th>
+    <td mat-cell *matCellDef="let patient">  {{patient.lastname}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef class='position-center'> Email </th>
+    <td mat-cell *matCellDef="let patient"> {{patient.email}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="telephone">
+    <th mat-header-cell *matHeaderCellDef class='position-center'> Telephone </th>
+    <td mat-cell *matCellDef="let patient"> {{patient.telephone}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="gender">
+    <th mat-header-cell *matHeaderCellDef class='position-center'> Gender </th>
+    <td mat-cell *matCellDef="let patient"> {{patient.gender}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="appointments">
+    <th mat-header-cell *matHeaderCellDef class='position-center'> Appointments </th>
+    <td mat-cell *matCellDef="let patient">
+      <button mat-icon-button color="primary" routerLink="/appointments/{{patient.id}}">
+          <mat-icon class="mat-18">reorder</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class='position-center'> Update </th>
+      <td mat-cell *matCellDef="let patient">
+        <button mat-icon-button routerLink="/detail/{{patient.id}}">
+            <mat-icon class="blue-icon">edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef class='position-center'> Delete </th>
+        <td mat-cell *matCellDef="let patient">
+          <button mat-icon-button (click)="delete(patient)">
+              <mat-icon class="red-icon">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container> -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
