@@ -13,6 +13,8 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { PatientDetailComponent } from './patient-detail/patient-detail.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,7 +45,9 @@ const routes: Routes = [
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MatSelectModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

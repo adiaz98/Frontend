@@ -13,6 +13,10 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
+  genders = [
+    "Hombre",
+    "Mujer"
+  ]
 
   constructor(private authService: AuthService) { }
   finalRole = ['admin'];
@@ -34,7 +38,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.form);
     // tslint:disable-next-line:max-line-length
-    this.signupInfo = new SignupInfo(this.form.username, this.finalRole, this.form.password, this.form.firstname, this.form.lastname, this.form.email, this.form.telephone);
+    this.signupInfo = new SignupInfo(this.form.username, this.finalRole, this.form.password, this.form.firstname, this.form.lastname, this.form.email, this.form.telephone, this.form.gender);
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
