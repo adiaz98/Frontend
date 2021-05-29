@@ -1,49 +1,45 @@
 <h2>My Patients</h2>
-<ul>
-  <li *ngFor="let patient of patientList">
-    <span class="badge">{{patient.id}}</span> {{ patient.firstname }} {{ patient.lastname }} {{ patient.email }} {{ patient.telephone }}
-    <button title="delete" (click)="delete(patient)">Delete</button>
-    &nbsp;
-    <a routerLink="/detail/{{patient.id}}">Edit</a>
-    &nbsp;
-    <a routerLink="/appointments/{{patient.id}}">View Appointments</a>
-  </li>
-</ul>
 
-<table mat-table [dataSource]="patientList">
+<div class="position-center">
+  <mat-form-field fxFlex="40%">
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef class='position-center'> Id </th>
+    <th mat-header-cell *matHeaderCellDef class='position-center'  mat-sort-header> Id </th>
     <td mat-cell *matCellDef="let patient"> {{patient.id}} </td>
   </ng-container>
 
   <ng-container matColumnDef="firstname">
-    <th mat-header-cell *matHeaderCellDef class='position-center'> Name </th>
+    <th mat-header-cell *matHeaderCellDef class='position-center'  mat-sort-header> Name </th>
     <td mat-cell *matCellDef="let patient"> {{patient.firstname}} </td>
   </ng-container>
 
   <ng-container matColumnDef="lastname">
-    <th mat-header-cell *matHeaderCellDef class='position-center'> LastName </th>
+    <th mat-header-cell *matHeaderCellDef class='position-center'  mat-sort-header> LastName </th>
     <td mat-cell *matCellDef="let patient">  {{patient.lastname}} </td>
   </ng-container>
 
   <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef class='position-center'> Email </th>
+    <th mat-header-cell *matHeaderCellDef class='position-center'  mat-sort-header> Email </th>
     <td mat-cell *matCellDef="let patient"> {{patient.email}} </td>
   </ng-container>
 
   <ng-container matColumnDef="telephone">
-    <th mat-header-cell *matHeaderCellDef class='position-center'> Telephone </th>
+    <th mat-header-cell *matHeaderCellDef class='position-center'  mat-sort-header> Telephone </th>
     <td mat-cell *matCellDef="let patient"> {{patient.telephone}} </td>
   </ng-container>
 
   <ng-container matColumnDef="gender">
-    <th mat-header-cell *matHeaderCellDef class='position-center'> Gender </th>
+    <th mat-header-cell *matHeaderCellDef class='position-center'  mat-sort-header> Gender </th>
     <td mat-cell *matCellDef="let patient"> {{patient.gender}} </td>
   </ng-container>
 
   <ng-container matColumnDef="appointments">
     <th mat-header-cell *matHeaderCellDef class='position-center'> Appointments </th>
-    <td mat-cell *matCellDef="let patient">
+    <td mat-cell *matCellDef="let patient" class='position-center'>
       <button mat-icon-button color="primary" routerLink="/appointments/{{patient.id}}">
           <mat-icon class="mat-18">reorder</mat-icon>
       </button>
@@ -52,7 +48,7 @@
 
   <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef class='position-center'> Update </th>
-      <td mat-cell *matCellDef="let patient">
+      <td mat-cell *matCellDef="let patient" class='position-center'>
         <button mat-icon-button routerLink="/detail/{{patient.id}}">
             <mat-icon class="blue-icon">edit</mat-icon>
         </button>
@@ -61,7 +57,7 @@
 
     <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef class='position-center'> Delete </th>
-        <td mat-cell *matCellDef="let patient">
+        <td mat-cell *matCellDef="let patient" class='position-center'>
           <button mat-icon-button (click)="delete(patient)">
               <mat-icon class="red-icon">delete</mat-icon>
           </button>

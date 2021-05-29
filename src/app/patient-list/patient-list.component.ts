@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Patient } from './patient.model';
 import { PatientService } from './patient.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-patient-list',
@@ -9,21 +10,21 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./patient-list.component.css'],
   providers: [PatientService]
 })
-export class PatientListComponent implements OnInit {
+export class PatientListComponent implements OnInit, AfterViewInit {
   public displayedColumns = ['id', 'firstname', 'lastname', 'email', 'telephone', 'gender', 'appointments', 'edit', 'delete'];
-  patientList: Patient[];
+  // patientList: Patient[];
   public dataSource = new MatTableDataSource<Patient>();
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private patientService: PatientService) { }
 
   ngOnInit() {
-    this.dataSource.data = this.patientList;
     this.getPatients();
   }
 
   getPatients(): void {
     this.patientService.getPatients()
-      .subscribe(patientList => this.patientList = patientList);
+      .subscribe(patientList => this.dataSource.data = patientList as Patient[]);
   }
 
   add(firstname: string, lastname: string, email: string, telephone: string): void {
@@ -32,14 +33,22 @@ export class PatientListComponent implements OnInit {
     email = email.trim();
     telephone = telephone.trim();
     this.patientService.addPatient({ firstname, lastname, email, telephone } as Patient)
-      .subscribe(patient => { this.patientList.push(patient); },
+      .subscribe(patient => { this.dataSource.data.push(patient); },
         error1 => {},
         () => {},
       );
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+  }
+
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  }
+
   delete(patient: Patient): void {
-    this.patientList = this.patientList.filter(c => c !== patient);
+    this.dataSource.data = this.dataSource.data.filter(c => c !== patient);
     this.patientService.deletePatient(patient).subscribe();
   }
 }

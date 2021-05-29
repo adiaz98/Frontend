@@ -18,6 +18,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -53,7 +56,10 @@ const routes: Routes = [
     MatSelectModule,
     MatTableModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
